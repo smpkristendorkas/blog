@@ -8,6 +8,8 @@ body{margin:0;background:var(--bg);color:#0f172a;line-height:1.5}
 .brand .logo{width:44px;height:44px;object-fit:contain;border-radius:6px}
 .nav{display:flex;gap:0.75rem}
 .nav a{color:#0f172a;text-decoration:none;padding:0.5rem}
+.nav a.admin-link{background:linear-gradient(135deg, #e74c3c, #c0392b);color:white;border-radius:6px;padding:0.5rem 1rem;font-weight:600;transition:all 0.3s ease}
+.nav a.admin-link:hover{background:linear-gradient(135deg, #c0392b, #a93226);transform:scale(1.05)}
 .menu-toggle{display:none;background:none;border:0;font-size:1.25rem}
 .hero{padding:0;background:transparent}
 

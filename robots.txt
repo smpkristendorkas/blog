@@ -1,0 +1,25 @@
+# robots.txt - SEO Configuration
+
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /about.html
+Allow: /news.html
+Allow: /contact.html
+Allow: /styles.css
+Allow: /script.js
+Allow: /uploads/media/
+
+# Disallow sensitive files
+Disallow: /admin-script.js
+Disallow: /*.sql$
+Disallow: /config.php
+Disallow: /api.php
+Disallow: /SETUP.md
+Disallow: /README.md
+
+# Crawl delay
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: http://localhost/Blog/sitemap.xml
