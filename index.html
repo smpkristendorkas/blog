@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SMP Kristen Dorkas — Beranda</title>
+  <link rel="icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html"><img src="logo.png" alt="Logo SMP Kristen Dorkas" class="logo">SMP Kristen Dorkas</a>
+      <button id="menuToggle" class="menu-toggle">☰</button>
+      <nav id="nav" class="nav">
+        <a href="index.html">Beranda</a>
+        <a href="about.html">Tentang</a>
+        <a href="news.html">Berita</a>
+        <a href="contact.html">Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="slider" id="heroSlider">
+        <div class="slide active">
+          <img src="https://picsum.photos/seed/dorkas1/1200/600" alt="Kegiatan Sekolah">
+          <div class="slide-caption">
+            <h1>Upacara & Kegiatan Sekolah</h1>
+            <p>Rangkaian acara meriah dan penuh kreativitas.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="https://picsum.photos/seed/dorkas2/1200/600" alt="Prestasi Siswa">
+          <div class="slide-caption">
+            <h1>Prestasi dan Penghargaan</h1>
+            <p>Siswa berprestasi di lomba regional.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="https://picsum.photos/seed/dorkas3/1200/600" alt="Ekstrakurikuler">
+          <div class="slide-caption">
+            <h1>Ekstrakurikuler Aktif</h1>
+            <p>Musik, olahraga, dan klaster sains yang beragam.</p>
+          </div>
+        </div>
+
+        <button class="slider-prev" aria-label="Prev">‹</button>
+        <button class="slider-next" aria-label="Next">›</button>
+        <div class="slider-dots" id="heroDots"></div>
+      </div>
+    </section>
+
+    <section class="news container">
+      <h2>Berita Terbaru</h2>
+      <div class="cards">
+        <article class="card">
+          <img src="https://picsum.photos/seed/dorkas1/400/240" alt="Kegiatan Sekolah">
+          <h3>Upacara Hari Jadi Sekolah</h3>
+          <p>Rangkaian acara dan lomba antar kelas yang meriah.</p>
+          <a class="read-more" href="news.html">Baca selengkapnya →</a>
+        </article>
+        <article class="card">
+          <img src="https://picsum.photos/seed/dorkas2/400/240" alt="Prestasi Siswa">
+          <h3>Juara Lomba Matematika</h3>
+          <p>Siswa SMP Kristen Dorkas menorehkan prestasi di tingkat kabupaten.</p>
+          <a class="read-more" href="news.html">Baca selengkapnya →</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="info container">
+      <div class="grid">
+        <div>
+          <h3>Fasilitas Modern</h3>
+          <p>Laboratorium, perpustakaan, dan lapangan olahraga yang terawat.</p>
+        </div>
+        <div>
+          <h3>Program Ekstrakurikuler</h3>
+          <p>Musik, olahraga, sains, dan pengembangan karakter.</p>
+        </div>
+        <div>
+          <h3>Pendampingan Rohani</h3>
+          <p>Pembentukan karakter dan kegiatan ibadah rutin.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© SMP Kristen Dorkas — Semua hak dilindungi. | Alamat: Jl. Contoh No. 1</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

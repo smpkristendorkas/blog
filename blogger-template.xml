@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html b:version="2" xmlns="http://www.w3.org/1999/xhtml" xmlns:b="http://www.google.com/2005/gml">
+<head>
+  <title><data:blog.pageTitle/></title>
+  <b:include data='blog' name='all-head-content'/>
+  <b:skin><![CDATA[
+:root{--accent:#0b63ff;--muted:#6b7280;--bg:#f8fafc;--card:#ffffff}
+*{box-sizing:border-box;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+body{margin:0;background:var(--bg);color:#0f172a;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:1rem}
+.site-header{background:linear-gradient(90deg,#ffffffcc, #f0fff8);backdrop-filter:blur(4px);border-bottom:1px solid #e6eef0}
+.nav-wrap{display:flex;align-items:center;gap:1rem;justify-content:space-between}
+.brand{display:inline-flex;align-items:center;gap:0.6rem;font-weight:800;color:var(--accent);text-decoration:none;font-size:1.125rem}
+.brand .logo{width:44px;height:44px;object-fit:contain;border-radius:6px}
+.nav{display:flex;gap:0.75rem}
+.nav a{color:#0f172a;text-decoration:none;padding:0.5rem}
+.menu-toggle{display:none;background:none;border:0;font-size:1.25rem}
+.slider{position:relative;overflow:hidden;border-radius:12px;min-height:400px}
+.slide{position:absolute;inset:0;opacity:0;transform:scale(1);transition:opacity 0.8s cubic-bezier(.2,.8,.2,1),transform 0.9s cubic-bezier(.2,.8,.2,1);will-change:opacity,transform}
+.slide.active{opacity:1;z-index:2;transform:scale(1.02)}
+.slide img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.9s cubic-bezier(.2,.8,.2,1)}
+.slide-caption{position:absolute;left:2rem;bottom:2rem;color:white;text-shadow:0 6px 22px rgba(0,0,0,0.6);max-width:60%;transform:translateY(6px);transition:transform 0.6s ease,opacity 0.6s ease}
+.slide.active .slide-caption{transform:translateY(0);opacity:1}
+.slider-prev,.slider-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.36);color:white;border:0;padding:0.5rem 0.75rem;border-radius:8px;cursor:pointer;font-size:1.5rem}
+.slider-prev{left:1rem}
+.slider-next{right:1rem}
+.slider-dots{position:absolute;left:50%;transform:translateX(-50%);bottom:1rem;display:flex;gap:0.5rem}
+.slider-dots button{width:10px;height:10px;border-radius:50%;border:0;background:rgba(255,255,255,0.5);cursor:pointer;transition:transform 0.2s ease,background 0.2s}
+.slider-dots button.active{background:var(--accent);transform:scale(1.1)}
+.btn{display:inline-block;background:var(--accent);color:white;padding:0.6rem 1rem;border-radius:8px;text-decoration:none}
+.btn.ghost{background:transparent;border:1px solid var(--accent);color:var(--accent)}
+.news h2{margin-top:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.card{background:var(--card);border-radius:8px;box-shadow:0 6px 18px rgba(15,23,42,0.06);overflow:hidden}
+.card img{width:100%;height:140px;object-fit:cover;display:block}
+.card h3{margin:0.75rem}
+.card p{margin:0 0 0.75rem;color:var(--muted);padding:0 0.75rem}
+.read-more{display:block;padding:0.5rem 0.75rem;color:var(--accent);text-decoration:none}
+.info .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+.site-footer{padding:1rem 0;background:#fff;border-top:1px solid #e6eef0;margin-top:2rem}
+.contact-form{max-width:560px}
+.contact-form label{display:block;margin-bottom:0.75rem}
+.contact-form input,.contact-form textarea{width:100%;padding:0.5rem;border:1px solid #d1d5db;border-radius:6px}
+@media(max-width:700px){
+  .menu-toggle{display:block}
+  .nav{display:none;position:absolute;top:64px;right:1rem;background:white;padding:0.5rem;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+  .slider{min-height:220px}
+  .slide img{height:100%}
+  .slide-caption{left:1rem;right:1rem;max-width:90%}
+  .slide-caption h1{font-size:1.25rem}
+}
+  ]]></b:skin>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" expr:href='data:blog.homepageUrl'><img src="logo.png" class="logo" alt="Logo"></img> <data:blog.title/></a>
+      <b:section id='nav' class='nav' showaddelement='yes'>
+        <b:widget id='PageList1' locked='false' title='Pages' type='PageList'/>
+      </b:section>
+    </div>
+  </header>
+
+  <div class="slider" id="heroSlider">
+    <div class="slide active">
+      <img src="https://picsum.photos/seed/dorkas1/1200/600" alt="Kegiatan Sekolah"></img>
+      <div class="slide-caption"><h1>Upacara &amp; Kegiatan Sekolah</h1><p>Rangkaian acara meriah dan penuh kreativitas.</p></div>
+    </div>
+    <div class="slide">
+      <img src="https://picsum.photos/seed/dorkas2/1200/600" alt="Prestasi Siswa"></img>
+      <div class="slide-caption"><h1>Prestasi dan Penghargaan</h1><p>Siswa berprestasi di lomba regional.</p></div>
+    </div>
+    <div class="slide">
+      <img src="https://picsum.photos/seed/dorkas3/1200/600" alt="Ekstrakurikuler"></img>
+      <div class="slide-caption"><h1>Ekstrakurikuler Aktif</h1><p>Musik, olahraga, dan klaster sains yang beragam.</p></div>
+    </div>
+    <button class="slider-prev" aria-label="Prev">‹</button>
+    <button class="slider-next" aria-label="Next">›</button>
+    <div class="slider-dots" id="heroDots"></div>
+  </div>
+
+  <b:section id='main' class='main' showaddelement='yes'>
+    <b:widget id='Blog1' type='Blog' locked='false'/>
+  </b:section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <data:blog.title/> — Semua hak dilindungi.</p>
+    </div>
+  </footer>
+
+  <script type="text/javascript"><![CDATA[
+(function(){
+  const slider = document.getElementById('heroSlider');
+  if(!slider) return;
+  const slides = Array.from(slider.querySelectorAll('.slide'));
+  const prev = slider.querySelector('.slider-prev');
+  const next = slider.querySelector('.slider-next');
+  const dotsWrap = document.getElementById('heroDots');
+  let current = 0; let interval = null; const delay = 5000;
+
+  const dots = slides.map((s,i)=>{ const b = document.createElement('button'); b.addEventListener('click',()=>goTo(i)); dotsWrap.appendChild(b); return b; });
+  function update(){ slides.forEach((s,i)=> s.classList.toggle('active', i===current)); dots.forEach((d,i)=> d.classList.toggle('active', i===current)); }
+  function goTo(i){ current = (i + slides.length) % slides.length; update(); }
+  function nextSlide(){ goTo(current+1); }
+  function prevSlide(){ goTo(current-1); }
+  function start(){ stop(); interval = setInterval(nextSlide, delay); }
+  function stop(){ if(interval) clearInterval(interval); interval = null; }
+
+  if(next) next.addEventListener('click', ()=>{ nextSlide(); start(); });
+  if(prev) prev.addEventListener('click', ()=>{ prevSlide(); start(); });
+
+  slider.addEventListener('mouseenter', stop);
+  slider.addEventListener('mouseleave', start);
+
+  update(); start();
+})();
+]]></script>
+</body>
+</html>
