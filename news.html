@@ -3,45 +3,101 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Berita — SMP Kristen Dorkas</title>
+  <title>Berita — Blog</title>
   <link rel="icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .posts-list { margin-top: 2rem; }
+    .post-card { 
+      background: white; 
+      padding: 1.5rem; 
+      margin-bottom: 1.5rem; 
+      border-radius: 8px; 
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      border-left: 4px solid #0b63ff;
+      transition: transform 0.3s ease;
+    }
+    .post-card:hover { transform: translateX(4px); }
+    .post-card h2 { margin: 0 0 0.5rem 0; font-size: 1.3rem; }
+    .post-card .meta { color: #7f8c8d; font-size: 0.85rem; margin-bottom: 1rem; }
+    .post-card .meta span { margin-right: 1rem; }
+    .post-card .excerpt { color: #334155; line-height: 1.6; }
+    .post-card .read-more { color: #0b63ff; text-decoration: none; font-weight: 600; }
+    .post-card .read-more:hover { text-decoration: underline; }
+    .loading { text-align: center; padding: 2rem; color: #7f8c8d; }
+  </style>
 </head>
 <body>
   <header class="site-header">
     <div class="container nav-wrap">
-      <a class="brand" href="index.html"><img src="logo.png" alt="Logo SMP Kristen Dorkas" class="logo">SMP Kristen Dorkas</a>
-      <button id="menuToggle3" class="menu-toggle">☰</button>
-      <nav id="nav3" class="nav">
+      <a class="brand" href="index.html"><img src="logo.png" alt="Logo Blog" class="logo">Blog</a>
+      <button id="menuToggle" class="menu-toggle">☰</button>
+      <nav id="nav" class="nav">
         <a href="index.html">Beranda</a>
         <a href="about.html">Tentang</a>
-        <a href="news.html">Berita</a>
+        <a href="news.html" style="color: #0b63ff; font-weight: 600;">Berita</a>
         <a href="contact.html">Kontak</a>
+        <a href="admin.html" class="admin-link">🔐 Admin</a>
       </nav>
     </div>
   </header>
 
   <main class="container">
     <h1>Berita & Pengumuman</h1>
-    <article class="post">
-      <h2>Upacara Hari Jadi Sekolah</h2>
-      <p>Tanggal: 1 Oktober 2026 — Acara lomba dan pertunjukan seni.</p>
-      <p>Deskripsi singkat tentang acara yang diselenggarakan di halaman sekolah.</p>
-    </article>
-
-    <article class="post">
-      <h2>Prestasi Siswa</h2>
-      <p>Beberapa siswa meraih penghargaan dalam lomba antar sekolah.</p>
-    </article>
+    <p style="color: #7f8c8d;">Baca artikel terbaru dan update dari blog kami.</p>
+    
+    <div class="posts-list" id="postsList">
+      <div class="loading">Memuat berita...</div>
+    </div>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>© SMP Kristen Dorkas</p>
+      <p>© Blog — Semua hak dilindungi. | <a href="index.html" style="color: #0b63ff; text-decoration: none;">Kembali ke Beranda</a></p>
     </div>
   </footer>
 
+  <script>
+    // Load all posts
+    function loadAllPosts() {
+      fetch('blog-api.php?action=get_posts&limit=100')
+        .then(response => response.json())
+        .then(data => {
+          const postsList = document.getElementById('postsList');
+          postsList.innerHTML = '';
+          
+          if (data.success && data.data.length > 0) {
+            data.data.forEach(post => {
+              const excerpt = post.content.substring(0, 200) + '...';
+              const postCard = document.createElement('div');
+              postCard.className = 'post-card';
+              postCard.innerHTML = `
+                <h2>${post.title}</h2>
+                <div class="meta">
+                  <span>📝 ${post.category}</span>
+                  <span>👤 ${post.author}</span>
+                  <span>📅 ${post.created_date}</span>
+                </div>
+                <p class="excerpt">${excerpt}</p>
+                <a href="single.html?id=${post.id}" class="read-more">Baca Selengkapnya →</a>
+              `;
+              postsList.appendChild(postCard);
+            });
+          } else {
+            postsList.innerHTML = '<div class="loading">Belum ada berita yang dipublikasikan</div>';
+          }
+        })
+        .catch(error => {
+          console.error('Error loading posts:', error);
+          document.getElementById('postsList').innerHTML = '<div class="loading">Gagal memuat berita</div>';
+        });
+    }
+
+    // Load posts when page loads
+    document.addEventListener('DOMContentLoaded', loadAllPosts);
+  </script>
+  
   <script src="script.js"></script>
 </body>
 </html>
