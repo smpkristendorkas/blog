@@ -6,22 +6,43 @@
  * yang dapat digunakan di seluruh aplikasi
  */
 
-require_once 'config.php';
+// Set error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
+
+// Check if config exists
+if (!defined('DB_HOST')) {
+    if (!file_exists('config.php')) {
+        die(json_encode([
+            'success' => false,
+            'message' => 'config.php tidak ditemukan'
+        ]));
+    }
+    require_once 'config.php';
+}
 
 class Database {
     private $conn;
+    private $error = null;
 
     public function __construct() {
-        $this->conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-        
-        if ($this->conn->connect_error) {
+        try {
+            $this->conn = @new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+            
+            if ($this->conn->connect_error) {
+                $this->error = 'Database connection failed: ' . $this->conn->connect_error;
+                throw new Exception($this->error);
+            }
+            
+            $this->conn->set_charset("utf8mb4");
+        } catch (Exception $e) {
+            http_response_code(500);
             die(json_encode([
                 'success' => false,
-                'message' => 'Database connection failed: ' . $this->conn->connect_error
+                'message' => $this->error,
+                'debug' => $e->getMessage()
             ]));
         }
-        
-        $this->conn->set_charset("utf8mb4");
     }
 
     public function getConnection() {

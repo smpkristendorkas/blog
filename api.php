@@ -6,10 +6,34 @@
  * Terhubung langsung ke database dan menangani CRUD operations
  */
 
-header('Content-Type: application/json');
+// Set error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+
+// Set header HARUS sebelum apapun
+header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
+
+// Handle OPTIONS request
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
+
+// Error handler
+function sendError($message, $code = 500) {
+    http_response_code($code);
+    echo json_encode(['success' => false, 'message' => $message, 'code' => $code]);
+    exit;
+}
+
+// Check if config.php exists
+if (!file_exists('config.php')) {
+    sendError('config.php tidak ditemukan. Silakan buat file config.php terlebih dahulu.', 500);
+}
 
 // Include database helper
 require_once 'database.php';
@@ -21,6 +45,10 @@ $data = json_decode($request_data, true);
 
 // Get action from query parameter
 $action = isset($_GET['action']) ? $_GET['action'] : null;
+
+if (!$action) {
+    sendError('Action parameter diperlukan', 400);
+}
 
 // Route requests
 switch ($action) {

@@ -3,13 +3,17 @@
  * Blog Configuration File
  * 
  * Edit file ini sesuai dengan konfigurasi database Anda
+ * PENTING: Sesuaikan nilai DB_USER, DB_PASS, dan DB_NAME dengan setup MySQL Anda
  */
 
 // Database Configuration
 define('DB_HOST', 'localhost');    // Database host (biasanya localhost)
-define('DB_USER', 'root');         // Database username
-define('DB_PASS', '');             // Database password (kosong untuk default)
+define('DB_USER', 'root');         // Database username (default: root)
+define('DB_PASS', '');             // Database password (kosong untuk default XAMPP/WAMP)
 define('DB_NAME', 'blog_db');      // Database name
+
+// Jika Anda menggunakan password untuk MySQL, ubah DB_PASS di atas
+// Contoh: define('DB_PASS', 'password123');
 
 // Site Configuration
 define('SITE_TITLE', 'Blog Saya');
@@ -25,11 +29,10 @@ define('MAX_UPLOAD_SIZE', 5 * 1024 * 1024); // 5MB
 // define('WP_SITEURL', 'http://localhost/wordpress');
 // define('WP_CONTENT_DIR', '/path/to/wp-content');
 
-// Error Reporting (disable di production)
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 // Timezone
 date_default_timezone_set('Asia/Jakarta');
+
+// Debug mode (set false di production)
+define('DEBUG_MODE', true);
 
 ?>
